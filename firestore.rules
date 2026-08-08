@@ -1,0 +1,116 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ═══ FUNCIONES HELPER ═══════════════════════════════════
+    
+    // Verifica si el usuario está autenticado
+    function isAuth() {
+      return request.auth != null;
+    }
+    
+    // Verifica si es Marco (administrador maestro)
+    function isMarco() {
+      return isAuth() && 
+        get(/databases/$(database)/documents/trabajadores/$(request.auth.uid)).data.rol == 'admin';
+    }
+    
+    // Verifica si es coordinador o admin
+    function isCoordinadorOAdmin() {
+      return isAuth() && 
+        get(/databases/$(database)/documents/trabajadores/$(request.auth.uid)).data.rol in ['admin', 'coordinador'];
+    }
+    
+    // Verifica si es cualquier trabajador activo
+    function isTrabajador() {
+      return isAuth() && 
+        exists(/databases/$(database)/documents/trabajadores/$(request.auth.uid));
+    }
+    
+    // Verifica si el documento le pertenece al vendedor
+    function esSuRegistro() {
+      return isAuth() && 
+        resource.data.vendedor_id == request.auth.uid;
+    }
+
+    // ═══ CONTACTOS ══════════════════════════════════════════
+    match /contactos/{id} {
+      allow create: if true;           // cualquier visitante puede enviar
+      allow read:   if isCoordinadorOAdmin() || esSuRegistro();
+      allow update: if isTrabajador();
+      allow delete: if isMarco();
+    }
+
+    // ═══ INSCRIPCIONES ACADEMIA ═════════════════════════════
+    match /inscripciones_academia/{id} {
+      allow create: if true;
+      allow read:   if isCoordinadorOAdmin() || esSuRegistro();
+      allow update: if isTrabajador();
+      allow delete: if isMarco();
+    }
+
+    // ═══ LEADS GRATUITOS ════════════════════════════════════
+    match /leads_gratuitos/{id} {
+      allow create: if true;
+      allow read:   if isCoordinadorOAdmin() || esSuRegistro();
+      allow update: if isTrabajador();
+      allow delete: if isMarco();
+    }
+
+    // ═══ VENTAS HERRAMIENTAS ════════════════════════════════
+    match /ventas_herramientas/{id} {
+      allow create: if true;
+      allow read:   if isCoordinadorOAdmin() || esSuRegistro();
+      allow update: if isTrabajador();
+      allow delete: if isMarco();
+    }
+
+    // ═══ SUSCRIPCIONES ══════════════════════════════════════
+    match /suscripciones/{id} {
+      allow create: if true;
+      allow read:   if isCoordinadorOAdmin() || esSuRegistro();
+      allow update: if isTrabajador();
+      allow delete: if isMarco();
+    }
+
+    // ═══ CHATS ══════════════════════════════════════════════
+    match /chats/{id} {
+      allow create: if true;
+      allow read, update: if isMarco();
+      allow delete: if isMarco();
+    }
+
+    // ═══ CAMPAÑAS MARKETING ═════════════════════════════════
+    match /campanas_marketing/{id} {
+      allow create, update: if isCoordinadorOAdmin();
+      allow read:           if isTrabajador();
+      allow delete:         if isMarco();
+    }
+
+    // ═══ CUPONES ════════════════════════════════════════════
+    match /cupones/{id} {
+      allow create, update, delete: if isCoordinadorOAdmin();
+      allow read: if true;           // necesario para validar en frontend
+    }
+
+    // ═══ TRABAJADORES ═══════════════════════════════════════
+    match /trabajadores/{uid} {
+      allow create, delete: if isMarco();
+      allow read:           if isAuth() && request.auth.uid == uid;
+      allow update:         if isMarco() || 
+                              (isAuth() && request.auth.uid == uid && 
+                               !request.resource.data.diff(resource.data).affectedKeys()
+                                .hasAny(['rol', 'permisos', 'estado']));
+    }
+
+    // ═══ ADMIN CONFIG ════════════════════════════════════════
+    match /admin/{document=**} {
+      allow read, write: if isMarco();
+    }
+
+    // ═══ REGLA GENERAL — denegar todo lo demás ══════════════
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

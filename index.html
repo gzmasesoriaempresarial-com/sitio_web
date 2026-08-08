@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GZM Asesoría Empresarial | Estrategia · Datos · Acción</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ═══ DESIGN SYSTEM ══════════════════════════════════════ */
+:root {
+  --white:    #FFFFFF;
+  --g50:      #F7F7F7;
+  --g100:     #F0F0F0;
+  --g200:     #E2E2E2;
+  --g300:     #C8C8C8;
+  --g400:     #9E9E9E;
+  --g500:     #717171;
+  --g600:     #4F4F4F;
+  --g700:     #333333;
+  --g800:     #1C1C1C;
+  --g900:     #0F0F0F;
+  --black:    #050505;
+  --ease:     cubic-bezier(.4,0,.2,1);
+  --ease-out: cubic-bezier(0,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--g900);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ─── SKIP NAV ────────────────────────────────────────── */
+.skip-nav{position:absolute;top:-100%;left:1rem;background:var(--black);color:var(--white);padding:.5rem 1.25rem;border-radius:0 0 4px 4px;font-size:.78rem;font-weight:700;font-family:'Montserrat',sans-serif;letter-spacing:.06em;z-index:9999;transition:top .15s;text-decoration:none}
+.skip-nav:focus{top:0;outline:2px solid var(--g500);outline-offset:2px}
+
+/* ─── TOP BAR ─────────────────────────────────────────── */
+#topbar{background:var(--black);color:var(--g500);font-size:.72rem;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+#topbar .inner{max-width:1200px;margin:auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+#topbar a{color:var(--g500);transition:color .2s}
+#topbar a:hover{color:var(--white)}
+.topbar-left,.topbar-right{display:flex;gap:1.25rem;align-items:center}
+
+/* ─── HEADER / NAV ────────────────────────────────────── */
+#header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--g100);transition:box-shadow .3s var(--ease),border-color .3s}
+#header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.07);border-color:var(--g200)}
+.nav-inner{max-width:1200px;margin:auto;padding:0 2rem;height:72px;display:flex;justify-content:space-between;align-items:center;gap:2rem}
+.logo-link{display:flex;align-items:center;flex-shrink:0}
+.logo-img{height:38px;width:auto;object-fit:contain;mix-blend-mode:multiply}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none;font-size:.8rem;font-weight:500;font-family:'Montserrat',sans-serif;letter-spacing:.03em}
+.nav-links a{color:var(--g600);transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--black)}
+.btn-cta{background:var(--black);color:var(--white)!important;opacity:1!important;padding:.58rem 1.35rem;border-radius:2px;font-size:.72rem;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s;white-space:nowrap}
+.btn-cta:hover{background:var(--g800)!important;transform:translateY(-1px)}
+.btn-cta.outline{background:transparent!important;border:1.5px solid var(--black);color:var(--black)!important}
+.btn-cta.outline:hover{background:var(--black)!important;color:var(--white)!important}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem}
+.hamburger span{display:block;width:22px;height:2px;background:var(--black);margin:5px 0;transition:all .3s;border-radius:1px}
+#mobile-menu{display:none;background:var(--white);border-top:1px solid var(--g100);padding:1rem 2rem 1.5rem}
+#mobile-menu.open{display:block}
+#mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+#mobile-menu a{font-size:.88rem;font-weight:600;color:var(--g700);display:block;padding:.6rem 0;border-bottom:1px solid var(--g100);font-family:'Montserrat',sans-serif;letter-spacing:.02em}
+.lang-toggle-nav{display:flex;border:1px solid var(--g200);border-radius:2px;overflow:hidden}
+.lang-toggle-nav button{padding:.3rem .65rem;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border:none;background:transparent;cursor:pointer;color:var(--g400);transition:background .2s,color .2s;font-family:'Montserrat',sans-serif}
+.lang-toggle-nav button.active{background:var(--black);color:var(--white)}
+
+/* ─── HERO ────────────────────────────────────────────── */
+#hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:var(--black)}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center 40%;opacity:.12;will-change:transform}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(5,5,5,.98) 0%,rgba(5,5,5,.88) 55%,rgba(5,5,5,.65) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+.hero-content{position:relative;max-width:1200px;margin:auto;padding:8rem 2rem 8rem;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--g400);padding:.45rem 1rem;border-radius:2px;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:2.5rem;animation:fadeUp .7s var(--ease) both}
+.hero-eyebrow-dot{width:5px;height:5px;background:var(--g500);border-radius:50%;animation:pulse 2s infinite}
+.hero-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(3rem,7vw,6.5rem);color:var(--white);line-height:.95;letter-spacing:-.04em;margin-bottom:2rem;animation:fadeUp .7s .1s var(--ease) both;max-width:820px}
+.hero-title em{font-style:normal;color:var(--g400)}
+.hero-sub{font-size:clamp(.92rem,1.8vw,1.08rem);color:var(--g500);max-width:480px;line-height:1.8;font-weight:400;margin-bottom:3rem;animation:fadeUp .7s .2s var(--ease) both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .3s var(--ease) both}
+.btn-hero-primary{background:var(--white);color:var(--black);padding:.9rem 2.2rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:.6rem}
+.btn-hero-primary:hover{background:var(--g100);transform:translateY(-2px)}
+.btn-hero-secondary{background:transparent;color:var(--g400);border:1px solid rgba(255,255,255,.18);padding:.9rem 2.2rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+.btn-hero-secondary:hover{border-color:rgba(255,255,255,.45);color:var(--white);transform:translateY(-2px)}
+
+/* ─── STATS STRIP ─────────────────────────────────────── */
+#stats{background:var(--g900);border-bottom:1px solid rgba(255,255,255,.05)}
+.stats-inner{max-width:1200px;margin:auto;padding:2.5rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat-item{padding:.75rem 1rem;border-right:1px solid rgba(255,255,255,.05)}
+.stat-item:last-child{border-right:none}
+.stat-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.6rem;color:var(--white);line-height:1;letter-spacing:-.04em}
+.stat-n sup{font-size:1.2rem;vertical-align:super;color:var(--g500)}
+.stat-l{font-size:.65rem;color:var(--g600);margin-top:.5rem;text-transform:uppercase;letter-spacing:.12em;font-family:'Montserrat',sans-serif;font-weight:500}
+
+/* ─── SECTION BASE ────────────────────────────────────── */
+.section{padding:7rem 0}
+.section.bg-alt{background:var(--g50)}
+.section.bg-dark{background:var(--g900)}
+.section.bg-black{background:var(--black)}
+.container{max-width:1200px;margin:auto;padding:0 2rem}
+.section-eyebrow{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--g400);margin-bottom:.75rem}
+.section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.5vw,2.9rem);color:var(--g900);line-height:1.08;letter-spacing:-.03em;margin-bottom:1rem}
+.section-title.light{color:var(--white)}
+.section-rule{width:36px;height:2px;background:var(--g900);margin:.75rem 0 1.5rem}
+.section-rule.light{background:rgba(255,255,255,.15)}
+.section-rule.center{margin-left:auto;margin-right:auto}
+.section-desc{color:var(--g500);line-height:1.8;max-width:560px;font-size:.95rem}
+.section-desc.light{color:var(--g600)}
+.centered{text-align:center}
+.centered .section-desc{margin-left:auto;margin-right:auto}
+
+/* ─── FEATURES ────────────────────────────────────────── */
+#features{background:var(--white);padding:6rem 0}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.feat-card{border:1px solid var(--g200);border-radius:4px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.feat-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.1);border-color:var(--g300)}
+.feat-card-dark{background:var(--g900);padding:2.5rem 2rem;display:flex;flex-direction:column;min-height:220px}
+.feat-card-icon{width:44px;height:44px;background:rgba(255,255,255,.07);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--g400);margin-bottom:1.5rem}
+.feat-card-dark h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);margin-bottom:.65rem;line-height:1.2}
+.feat-card-dark p{font-size:.8rem;color:var(--g600);line-height:1.7;flex:1}
+.feat-card-dark a{display:inline-flex;align-items:center;gap:.45rem;color:var(--g500);font-size:.68rem;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-top:1.5rem;transition:gap .2s,color .2s}
+.feat-card-dark a:hover{gap:.85rem;color:var(--g300)}
+.feat-card img{width:100%;height:175px;object-fit:cover;display:block;filter:grayscale(20%);transition:filter .4s}
+.feat-card:hover img{filter:grayscale(0%)}
+.feat-card-body{background:var(--g50);padding:1.5rem 2rem;border-top:1px solid var(--g200)}
+.feat-card-body h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.95rem;color:var(--g900);margin-bottom:.4rem}
+.feat-card-body p{font-size:.8rem;color:var(--g500);line-height:1.65}
+
+/* ─── ABOUT ───────────────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-img-frame{border-radius:4px;overflow:hidden}
+.about-img-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;filter:grayscale(10%);transition:filter .5s}
+.about-img-wrap:hover .about-img-frame img{filter:grayscale(0%)}
+.about-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--black);color:var(--white);padding:1.5rem 1.75rem;border-radius:4px;text-align:center;box-shadow:0 16px 48px rgba(0,0,0,.25)}
+.about-badge-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.2rem;color:var(--white);line-height:1;letter-spacing:-.04em}
+.about-badge-l{font-size:.58rem;color:var(--g600);text-transform:uppercase;letter-spacing:.14em;margin-top:.35rem;font-family:'Montserrat',sans-serif;font-weight:600}
+.about-specs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:2rem 0}
+.about-spec{background:var(--g50);border-radius:3px;padding:1rem 1.25rem;border-left:2px solid var(--g900)}
+.about-spec-l{font-size:.58rem;text-transform:uppercase;letter-spacing:.16em;color:var(--g400);font-weight:700;font-family:'Montserrat',sans-serif}
+.about-spec-v{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:var(--g900);margin-top:.3rem}
+
+/* ─── SERVICES ────────────────────────────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g200);border:1px solid var(--g200);border-radius:4px;overflow:hidden;margin-top:3.5rem}
+.service-card{background:var(--white);padding:2rem 1.75rem;transition:background .25s var(--ease);cursor:default}
+.service-card:hover,.service-card.featured{background:var(--g900)}
+.service-icon{width:44px;height:44px;border-radius:3px;background:var(--g100);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--g600);margin-bottom:1.25rem;transition:background .25s,color .25s}
+.service-card:hover .service-icon,.service-card.featured .service-icon{background:rgba(255,255,255,.08);color:var(--g400)}
+.service-card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:var(--g900);margin-bottom:.5rem;line-height:1.35;transition:color .25s}
+.service-card:hover h3,.service-card.featured h3{color:var(--white)}
+.service-card p{font-size:.77rem;color:var(--g500);line-height:1.65;transition:color .25s}
+.service-card:hover p{color:var(--g500)}
+.service-card.featured p{color:var(--g600)}
+
+/* ─── ACADEMY ─────────────────────────────────────────── */
+.academy-wrap{background:var(--g900);border-radius:6px;padding:4rem;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.academy-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.015);pointer-events:none}
+.academy-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.1);color:var(--g500);padding:.35rem .9rem;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-family:'Montserrat',sans-serif;margin-bottom:1.25rem}
+.academy-wrap h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.3rem);color:var(--white);margin-bottom:.75rem;line-height:1.08;letter-spacing:-.025em}
+.academy-wrap>div>p{color:var(--g600);font-size:.9rem;line-height:1.8;max-width:480px;margin-bottom:2rem}
+.waitlist-form{display:flex;gap:.75rem;flex-wrap:wrap}
+.waitlist-form input{flex:1;min-width:220px;padding:.85rem 1.2rem;border:1px solid rgba(255,255,255,.1);border-radius:2px;background:rgba(255,255,255,.05);color:var(--white);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s}
+.waitlist-form input::placeholder{color:var(--g700)}
+.waitlist-form input:focus{border-color:rgba(255,255,255,.25)}
+.waitlist-form button{background:var(--white);color:var(--black);border:none;padding:.85rem 1.75rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.waitlist-form button:hover{background:var(--g100);transform:translateY(-1px)}
+.course-previews{display:flex;flex-direction:column;gap:.85rem;min-width:270px}
+.course-pill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:.9rem 1.1rem;display:flex;align-items:center;gap:.9rem;transition:background .2s}
+.course-pill:hover{background:rgba(255,255,255,.07)}
+.course-pill-icon{width:36px;height:36px;border-radius:3px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:var(--g500);font-size:.95rem;flex-shrink:0}
+.course-pill h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:var(--white)}
+.course-pill p{font-size:.7rem;color:var(--g700);margin-top:.1rem}
+.course-badge{margin-left:auto;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g600);border:1px solid rgba(255,255,255,.1);padding:.2rem .55rem;border-radius:2px;flex-shrink:0;font-family:'Montserrat',sans-serif}
+
+/* ─── TOOLS ───────────────────────────────────────────── */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.tool-card{background:var(--white);border-radius:4px;border:1px solid var(--g200);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.tool-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.09);border-color:var(--g300)}
+.tool-card-top{background:var(--g50);padding:2.5rem 2rem;display:flex;align-items:center;justify-content:center;min-height:130px;position:relative;border-bottom:1px solid var(--g200)}
+.tool-card-icon{font-size:2.5rem;color:var(--g700)}
+.tool-card-badge{position:absolute;top:.75rem;right:.75rem;background:var(--black);color:var(--white);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.25rem .65rem;border-radius:2px;font-family:'Montserrat',sans-serif}
+.tool-card-body{padding:1.75rem}
+.tool-card-body h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;color:var(--g900);margin-bottom:.5rem}
+.tool-card-body p{font-size:.8rem;color:var(--g500);line-height:1.65;margin-bottom:1.25rem}
+.tool-features{list-style:none;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:.4rem}
+.tool-features li{font-size:.78rem;color:var(--g600);display:flex;align-items:center;gap:.5rem}
+.tool-features li i{color:var(--g900);font-size:.62rem}
+.tool-price{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:var(--g900);margin-bottom:1.25rem;letter-spacing:-.025em}
+.tool-price span{font-size:.75rem;font-weight:400;color:var(--g400)}
+.btn-buy{display:block;width:100%;text-align:center;background:var(--black);color:var(--white);padding:.8rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s}
+.btn-buy:hover{background:var(--g800);transform:translateY(-1px)}
+
+/* ─── SAAS ────────────────────────────────────────────── */
+#software{background:var(--black);padding:7rem 0;position:relative;overflow:hidden}
+#software::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 10% 20%,rgba(255,255,255,.02) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(255,255,255,.015) 0%,transparent 60%);pointer-events:none}
+#software .container{position:relative;z-index:1}
+.saas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.saas-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;position:relative}
+.saas-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.18);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+.saas-card.featured{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.055)}
+.saas-card-badge{position:absolute;top:1.25rem;right:1.25rem;background:var(--white);color:var(--black);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .75rem;border-radius:2px}
+.saas-card-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.saas-icon-wrap{width:48px;height:48px;border-radius:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.2rem;color:var(--g500)}
+.saas-card-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--white);margin-bottom:.5rem;line-height:1.25}
+.saas-card-tagline{font-size:.78rem;color:var(--g600);line-height:1.65}
+.saas-billing-toggle{display:flex;align-items:center;justify-content:center;gap:1rem;margin:3rem auto 0;width:fit-content}
+.billing-label{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.78rem;color:var(--g600);transition:color .25s;cursor:pointer;-webkit-user-select:none;user-select:none}
+.billing-label.active{color:var(--white)}
+.billing-label .save-tag{background:rgba(255,255,255,.07);color:var(--g500);border:1px solid rgba(255,255,255,.1);border-radius:2px;font-size:.6rem;padding:.15rem .45rem;margin-left:.4rem;font-weight:700}
+.toggle-track{width:44px;height:24px;background:rgba(255,255,255,.08);border-radius:50px;position:relative;cursor:pointer;transition:background .25s;border:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.toggle-track.annual{background:rgba(255,255,255,.22)}
+.toggle-knob{position:absolute;top:3px;left:3px;width:16px;height:16px;background:var(--white);border-radius:50%;transition:transform .25s var(--ease);box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.toggle-track.annual .toggle-knob{transform:translateX(20px)}
+.saas-pricing{padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.saas-price-wrap{display:flex;align-items:flex-end;gap:.4rem}
+.saas-price-amount{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.4rem;color:var(--white);line-height:1;letter-spacing:-.04em}
+.saas-price-currency{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--g600);margin-bottom:.3rem}
+.saas-price-period{font-size:.75rem;color:var(--g700);margin-bottom:.3rem}
+.saas-price-annual-note{font-size:.72rem;color:var(--g600);margin-top:.5rem;min-height:1.2em}
+.saas-features{padding:1.5rem 2rem;flex:1}
+.saas-features ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.saas-features li{display:flex;align-items:flex-start;gap:.65rem;font-size:.82rem;color:var(--g600);line-height:1.55}
+.saas-features li i{color:var(--g500);font-size:.75rem;margin-top:.25rem;flex-shrink:0}
+.saas-card-footer{padding:1.5rem 2rem 2rem}
+.btn-saas-primary{display:block;width:100%;text-align:center;background:var(--white);color:var(--black);padding:.85rem 1.5rem;border-radius:3px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .15s;border:none;cursor:pointer;margin-bottom:.85rem}
+.btn-saas-primary:hover{background:var(--g100);transform:translateY(-1px)}
+.btn-saas-demo{display:block;width:100%;text-align:center;background:transparent;color:var(--g600);padding:.6rem;font-size:.72rem;font-weight:600;transition:color .2s;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.btn-saas-demo:hover{color:var(--g400)}
+.saas-payment-note{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:3.5rem;flex-wrap:wrap}
+.pay-badge{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:.5rem 1rem;font-size:.68rem;color:var(--g700);font-weight:600;font-family:'Montserrat',sans-serif;letter-spacing:.05em}
+.pay-badge i{color:var(--g600);font-size:.8rem}
+
+/* ─── QR MODAL ────────────────────────────────────────── */
+#qr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;align-items:center;justify-content:center}
+#qr-modal.open{display:flex}
+.qr-modal-box{background:var(--g900);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:2.5rem 2rem;max-width:400px;width:90%;text-align:center;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.7);animation:fadeUp .2s var(--ease)}
+.qr-modal-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:var(--g600);font-size:1.1rem;cursor:pointer;transition:color .2s}
+.qr-modal-close:hover{color:var(--white)}
+.qr-modal-box h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);margin-bottom:.5rem;letter-spacing:-.01em}
+.qr-modal-box>p{font-size:.82rem;color:var(--g600);margin-bottom:1.5rem;line-height:1.65}
+.qr-placeholder{width:180px;height:180px;margin:0 auto 1.5rem;background:var(--white);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--g700);font-size:.75rem;font-weight:600;font-family:'Montserrat',sans-serif;padding:1rem;text-align:center}
+.qr-placeholder i{font-size:2.5rem;color:var(--g700)}
+.qr-plan-detail{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:.75rem 1rem;margin-bottom:1.25rem;font-size:.82rem;color:var(--g600)}
+.qr-plan-detail strong{color:var(--white);font-family:'Montserrat',sans-serif}
+.qr-plan-amount{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.5rem;color:var(--g300);margin-top:.25rem;letter-spacing:-.02em}
+.qr-instructions{font-size:.75rem;color:var(--g600);line-height:1.75;text-align:left}
+.qr-instructions strong{color:var(--g400)}
+
+/* ─── TESTIMONIALS ────────────────────────────────────── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.testi-card{background:var(--white);border-radius:4px;padding:2rem;border:1px solid var(--g200);position:relative;transition:box-shadow .3s,border-color .3s}
+.testi-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--g300)}
+.testi-quote{font-size:2rem;color:var(--g200);font-family:Georgia,serif;line-height:1;margin-bottom:.75rem}
+.testi-text{font-size:.88rem;color:var(--g600);line-height:1.85;margin-bottom:1.5rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--g900);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;flex-shrink:0}
+.testi-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:var(--g900)}
+.testi-role{font-size:.72rem;color:var(--g400);margin-top:.15rem}
+.testi-sector{position:absolute;top:1.25rem;right:1.25rem;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g500);border:1px solid var(--g200);padding:.2rem .6rem;border-radius:2px;background:var(--g50);font-family:'Montserrat',sans-serif}
+
+/* ─── CONTACT ─────────────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-features{display:flex;flex-direction:column;gap:.85rem;margin:2rem 0}
+.contact-feat{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.25rem;border-radius:3px;background:var(--white);border:1px solid var(--g200);border-left:2px solid var(--g900)}
+.contact-feat i{color:var(--g700);font-size:1rem;margin-top:.15rem;flex-shrink:0}
+.contact-feat h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--g900);margin-bottom:.2rem}
+.contact-feat p{font-size:.78rem;color:var(--g500);line-height:1.6}
+.contact-form-wrap{background:var(--white);border-radius:6px;padding:2.5rem;border:1px solid var(--g200);box-shadow:0 4px 30px rgba(0,0,0,.05)}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--g700);margin-bottom:.45rem;font-family:'Montserrat',sans-serif}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.85rem 1rem;border:1px solid var(--g200);border-radius:3px;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--g900);outline:none;background:var(--white);transition:border-color .2s;appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--g900)}
+.form-group textarea{min-height:110px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{width:100%;background:var(--black);color:var(--white);border:none;padding:.95rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .15s;margin-top:.5rem}
+.form-submit:hover{background:var(--g800);transform:translateY(-1px)}
+.form-note{font-size:.7rem;color:var(--g400);text-align:center;margin-top:.75rem}
+
+/* ─── BLOG ────────────────────────────────────────────── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.blog-card{border-radius:4px;overflow:hidden;border:1px solid var(--g200);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;background:var(--white)}
+.blog-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.08);border-color:var(--g300)}
+.blog-card img{width:100%;height:175px;object-fit:cover;display:block;filter:grayscale(25%);transition:filter .4s}
+.blog-card:hover img{filter:grayscale(0%)}
+.blog-card-body{padding:1.75rem}
+.blog-tag{display:inline-block;background:var(--g100);color:var(--g700);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:.25rem .65rem;border-radius:2px;margin-bottom:.85rem;font-family:'Montserrat',sans-serif}
+.blog-card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.95rem;color:var(--g900);margin-bottom:.6rem;line-height:1.45}
+.blog-card p{font-size:.8rem;color:var(--g500);line-height:1.7;margin-bottom:1rem}
+.blog-card-footer{display:flex;align-items:center;justify-content:space-between;font-size:.7rem;color:var(--g400)}
+.blog-card-footer a{color:var(--g700);font-weight:600;font-size:.75rem;display:flex;align-items:center;gap:.3rem;transition:color .2s}
+.blog-card-footer a:hover{color:var(--black)}
+
+/* ─── FOOTER ──────────────────────────────────────────── */
+#footer{background:var(--black);padding:5rem 0 0;border-top:1px solid rgba(255,255,255,.04)}
+.footer-inner{max-width:1200px;margin:auto;padding:0 2rem 4rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-logo-img{height:34px;width:auto;filter:invert(1) brightness(10);margin-bottom:1.25rem}
+.footer-brand p{font-size:.82rem;color:var(--g700);line-height:1.8;margin-bottom:1.5rem;max-width:280px}
+.footer-socials{display:flex;gap:.6rem}
+.footer-social-btn{width:36px;height:36px;border-radius:3px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:var(--g700);font-size:.85rem;transition:background .2s,color .2s,border-color .2s}
+.footer-social-btn:hover{background:var(--white);color:var(--black);border-color:var(--white)}
+.footer-col h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.62rem;text-transform:uppercase;letter-spacing:.22em;color:var(--g600);margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col li a{font-size:.82rem;color:var(--g700);transition:color .2s}
+.footer-col li a:hover{color:var(--white)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.75rem}
+.footer-contact-item i{color:var(--g600);font-size:.82rem;margin-top:.2rem;flex-shrink:0}
+.footer-contact-item a,.footer-contact-item span{font-size:.82rem;color:var(--g700);transition:color .2s}
+.footer-contact-item a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.04);padding:1.5rem 2rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.68rem;color:var(--g800);font-family:'Montserrat',sans-serif;letter-spacing:.03em}
+.lang-switch{display:flex;gap:1rem}
+.lang-btn{color:var(--g700);cursor:pointer;font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;border:none;background:none;font-family:'Montserrat',sans-serif}
+.lang-btn:hover,.lang-btn.active{color:var(--white)}
+
+/* ─── CHAT ────────────────────────────────────────────── */
+#chat-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;width:52px;height:52px;border-radius:50%;background:var(--black);color:var(--white);border:1px solid rgba(255,255,255,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 8px 32px rgba(0,0,0,.4);transition:transform .2s var(--ease),background .2s}
+#chat-btn:hover{transform:scale(1.08);background:var(--g800)}
+#chat-bubble{position:fixed;bottom:5.5rem;right:2rem;z-index:200;background:var(--white);border-radius:8px;box-shadow:0 16px 60px rgba(0,0,0,.14);width:320px;overflow:hidden;display:none;animation:fadeUp .2s var(--ease);border:1px solid var(--g200)}
+#chat-bubble.open{display:block}
+.chat-header{background:var(--black);padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--g800);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.75rem;flex-shrink:0}
+.chat-header-info h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--white)}
+.chat-header-info p{font-size:.7rem;color:var(--g600);margin-top:.1rem}
+.chat-online{width:7px;height:7px;background:#4ade80;border-radius:50%;margin-left:auto;box-shadow:0 0 6px rgba(74,222,128,.6);flex-shrink:0}
+.chat-body{padding:1.25rem;display:flex;flex-direction:column;gap:.65rem;min-height:180px;max-height:280px;overflow-y:auto}
+.chat-msg{background:var(--g50);border-radius:6px 6px 6px 2px;padding:.75rem 1rem;font-size:.82rem;color:var(--g700);line-height:1.6;max-width:90%;border:1px solid var(--g100)}
+.chat-quick-btns{display:flex;flex-direction:column;gap:.45rem}
+.chat-q{border:1px solid var(--g200);border-radius:3px;padding:.55rem .85rem;font-size:.78rem;color:var(--g700);cursor:pointer;transition:background .2s,border-color .2s;background:var(--white);text-align:left;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:.5rem}
+.chat-q:hover{background:var(--g50);border-color:var(--g400)}
+.chat-q i{color:var(--g500);font-size:.75rem}
+.chat-footer{padding:.75rem 1.1rem;border-top:1px solid var(--g100);display:flex;gap:.5rem}
+.chat-footer input{flex:1;border:1px solid var(--g200);border-radius:3px;padding:.55rem .85rem;font-size:.82rem;outline:none;font-family:'Inter',sans-serif;color:var(--g900);background:var(--g50)}
+.chat-footer input:focus{border-color:var(--g700);background:var(--white)}
+.chat-send{background:var(--black);color:var(--white);border:none;border-radius:3px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.82rem;transition:background .2s;align-self:center;flex-shrink:0}
+.chat-send:hover{background:var(--g800)}
+
+/* ─── UTILS ───────────────────────────────────────────── */
+:focus-visible{outline:2px solid var(--g700);outline-offset:3px;border-radius:2px}
+.form-submit:disabled,.waitlist-form button:disabled{opacity:.6;cursor:not-allowed;transform:none!important}
+.form-group input.invalid,.form-group select.invalid,.form-group textarea.invalid{border-color:#dc2626;background:#fff5f5}
+.field-error{color:#dc2626;font-size:.72rem;margin-top:.35rem;display:flex;align-items:center;gap:.35rem;line-height:1.3}
+.field-error i{font-size:.68rem;flex-shrink:0}
+#lang-banner{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--black);color:var(--white);padding:.75rem 1.5rem;border-radius:4px;font-size:.8rem;font-family:'Montserrat',sans-serif;font-weight:600;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.4);white-space:nowrap;pointer-events:none;border:1px solid rgba(255,255,255,.08)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.hero-bg{transition:none!important}.fade-in{opacity:1!important;transform:none!important}}
+button,[role="button"],a{touch-action:manipulation}
+.btn-cta:active,.btn-hero-primary:active,.btn-hero-secondary:active,.btn-saas-primary:active,.btn-buy:active,.form-submit:active{transform:scale(.97)!important}
+
+/* ─── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ─── NEW MODALS & FEEDBACK ───────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay.open{display:flex}
+.modal-box{border-radius:8px;padding:2.5rem;max-width:520px;width:100%;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.35);animation:fadeUp .2s var(--ease);max-height:92vh;overflow-y:auto}
+.modal-box.light{background:var(--white)}
+.modal-box.dark{background:var(--g900);border:1px solid rgba(255,255,255,.08)}
+.modal-close{position:absolute;top:1.1rem;right:1.35rem;background:none;border:none;cursor:pointer;font-size:1rem;transition:color .2s;padding:.25rem;line-height:1}
+.modal-box.light .modal-close{color:var(--g500)}
+.modal-box.light .modal-close:hover{color:var(--g900)}
+.modal-box.dark .modal-close{color:var(--g600)}
+.modal-box.dark .modal-close:hover{color:var(--white)}
+.modal-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:.4rem;padding-right:2rem}
+.modal-box.light .modal-title{color:var(--g900)}
+.modal-box.dark .modal-title{color:var(--white)}
+.modal-subtitle{font-size:.82rem;line-height:1.6;margin-bottom:1.75rem}
+.modal-box.light .modal-subtitle{color:var(--g500)}
+.modal-box.dark .modal-subtitle{color:var(--g600)}
+.modal-box.dark .form-group label{color:var(--g500)}
+.modal-box.dark .form-group input,
+.modal-box.dark .form-group select{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:var(--white)}
+.modal-box.dark .form-group input::placeholder{color:var(--g700)}
+.modal-box.dark .form-group input:focus,
+.modal-box.dark .form-group select:focus{border-color:rgba(255,255,255,.35)}
+.modal-box.dark .form-group select option{background:var(--g900);color:var(--white)}
+.form-feedback{display:none;border-radius:4px;padding:.85rem 1rem;font-size:.82rem;font-weight:600;margin-top:.75rem;font-family:'Montserrat',sans-serif;line-height:1.45}
+.form-feedback.success{display:block;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+.form-feedback.error{display:block;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.cupon-row{display:flex;gap:.6rem;align-items:flex-end;margin-bottom:.4rem}
+.cupon-row .form-group{flex:1;margin-bottom:0}
+.btn-validar-cupon{background:var(--g100);color:var(--g900);border:1px solid var(--g200);border-radius:3px;font-size:.72rem;font-weight:700;font-family:'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .2s;padding:.85rem 1rem;flex-shrink:0}
+.btn-validar-cupon:hover{background:var(--g200)}
+.btn-validar-cupon:disabled{opacity:.55;cursor:not-allowed}
+.cupon-msg{font-size:.78rem;margin-top:.35rem;font-weight:600;font-family:'Montserrat',sans-serif;min-height:1.2em}
+.cupon-msg.ok{color:#166534}
+.cupon-msg.err{color:#991b1b}
+.cupon-price-row{display:none;justify-content:space-between;align-items:center;background:var(--g50);border:1px solid var(--g200);border-radius:3px;padding:.75rem 1rem;margin:.6rem 0 0}
+.cupon-price-row.visible{display:flex}
+.cupon-price-original{font-size:.82rem;color:var(--g400);text-decoration:line-through;font-family:'Montserrat',sans-serif}
+.cupon-price-final{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:var(--g900);letter-spacing:-.02em}
+.cupon-discount-badge{font-size:.72rem;color:#166534;font-weight:700;font-family:'Montserrat',sans-serif}
+.qr-step{display:none}
+.qr-step.active{display:block}
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:900px){
+  .features-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:4rem}
+  .about-badge{bottom:.5rem;right:.5rem}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .tools-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .academy-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .course-previews{flex-direction:row;overflow-x:auto;min-width:unset}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
+  .saas-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+  .lang-toggle-nav{display:none}
+  .section{padding:5rem 0}
+  #features{padding:4.5rem 0}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-bottom:1px solid rgba(255,255,255,.05)}
+  .stat-item:nth-child(2n){border-left:1px solid rgba(255,255,255,.05);border-bottom:none}
+}
+</style>
+</head>
+<body>
+<a class="skip-nav" href="#hero">Saltar al contenido principal</a>
+
+<!-- ═══ TOP BAR ══════════════════════════════════════════ -->
+<div id="topbar">
+  <div class="inner">
+    <div class="topbar-left">
+      <a href="tel:+59176358689"><i class="fas fa-phone-alt"></i> +591 763 58689</a>
+      <a href="mailto:guzmanmurillom@gmail.com"><i class="fas fa-envelope"></i> guzmanmurillom@gmail.com</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://linkedin.com/in/marcoantonioguzmanmurillo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Instagram (próximamente)" title="Próximamente"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook (próximamente)" title="Próximamente"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/59176358689" target="_blank" rel="noopener noreferrer" style="color:#4ade80"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HEADER ════════════════════════════════════════════ -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="#" class="logo-link" aria-label="GZM Asesoría Empresarial — inicio">
+      <img src="gzm-logo.jpeg" alt="GZM Asesoría Empresarial" class="logo-img">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#academia">Academia</a></li>
+      <li><a href="#herramientas">Herramientas</a></li>
+      <li><a href="#software">Software</a></li>
+      <li><a href="#testimonios">Casos de Éxito</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="/recursos-gratuitos.html">Recursos</a></li>
+      <li>
+        <div class="lang-toggle-nav">
+          <button class="active" onclick="setLang('es')">ES</button>
+          <button onclick="setLang('en')">EN</button>
+        </div>
+      </li>
+      <li><a href="#contacto" class="btn-cta">Reservar Cita</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="mobile-menu">
+    <ul>
+      <li><a href="#servicios" onclick="closeMobile()">Servicios</a></li>
+      <li><a href="#academia" onclick="closeMobile()">Academia</a></li>
+      <li><a href="#herramientas" onclick="closeMobile()">Herramientas</a></li>
+      <li><a href="#software" onclick="closeMobile()">Software</a></li>
+      <li><a href="#testimonios" onclick="closeMobile()">Casos de Éxito</a></li>
+      <li><a href="#blog" onclick="closeMobile()">Blog</a></li>
+      <li><a href="/recursos-gratuitos.html" onclick="closeMobile()">Recursos</a></li>
+      <li><a href="#contacto" onclick="closeMobile()" class="btn-cta" style="display:inline-block;margin-top:.5rem">Reservar Cita</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Consultoría · Auditoría · Academia · Software
+    </div>
+    <h1 class="hero-title">
+      Transformamos<br>tu empresa con<br><em>estrategia,</em><br>datos y acción.
+    </h1>
+    <p class="hero-sub">
+      Expertos en finanzas corporativas, gestión de proyectos y gobierno empresarial. Soluciones para PYMES y empresas familiares en Bolivia y Latinoamérica.
+    </p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-hero-primary">
+        <i class="fas fa-calendar-check"></i> Reservar Asesoría
+      </a>
+      <a href="#academia" class="btn-hero-secondary">
+        <i class="fas fa-graduation-cap"></i> Ver Academia
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═════════════════════════════════════════════ -->
+<div id="stats">
+  <div class="stats-inner">
+    <div class="stat-item fade-in">
+      <div class="stat-n">10<sup>+</sup></div>
+      <div class="stat-l">Años de experiencia</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-n">50<sup>+</sup></div>
+      <div class="stat-l">Empresas asesoradas</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-n">4</div>
+      <div class="stat-l">Países atendidos</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-n">100<sup>%</sup></div>
+      <div class="stat-l">Resultados entregados</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FEATURES ══════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feat-card fade-in">
+        <div class="feat-card-dark">
+          <div class="feat-card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Academia GZM</h3>
+          <p>Cursos de finanzas, auditoría, Excel avanzado y Business Intelligence para profesionales y empresarios.</p>
+          <a href="#academia">Unirme a la lista de espera <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="feat-card fade-in">
+        <img src="https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&w=600&q=80" alt="Consultoría empresarial" loading="lazy">
+        <div class="feat-card-body">
+          <h3>Consultoría Empresarial</h3>
+          <p>Diagnóstico, estrategia y acompañamiento personalizado para hacer crecer tu negocio.</p>
+        </div>
+      </div>
+      <div class="feat-card fade-in">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Herramientas digitales" loading="lazy">
+        <div class="feat-card-body">
+          <h3>Herramientas Digitales</h3>
+          <p>Plantillas financieras, sistemas contables en Excel y evaluaciones de desempeño listas para usar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ══════════════════════════════════════════════ -->
+<section class="section bg-alt" id="sobre-nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <div class="about-img-frame">
+          <img src="foto-marco.jpg" alt="Mgs. Ing. Marco Antonio Guzmán Murillo">
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-n">Mgs.</div>
+          <div class="about-badge-l">Ing. Marco Guzmán</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <span class="section-eyebrow">Sobre Nosotros</span>
+        <h2 class="section-title">Consultoría de alto nivel con resultados reales</h2>
+        <div class="section-rule"></div>
+        <p class="section-desc" style="margin-bottom:1.25rem">
+          GZM Asesoría Empresarial es liderada por el <strong>Mgs. Ing. Marco Antonio Guzmán Murillo</strong>, especialista en finanzas corporativas, gestión de proyectos de inversión y gobierno empresarial. Con más de 10 años transformando PYMES y empresas familiares en Bolivia y la región.
+        </p>
+        <p class="section-desc">
+          Nuestra metodología combina rigor técnico, acompañamiento estratégico y herramientas de datos para que tomes decisiones con confianza y claridad.
+        </p>
+        <div class="about-specs">
+          <div class="about-spec">
+            <div class="about-spec-l">Especialidad</div>
+            <div class="about-spec-v">Finanzas Corporativas</div>
+          </div>
+          <div class="about-spec">
+            <div class="about-spec-l">Especialidad</div>
+            <div class="about-spec-v">Gestión de Proyectos PMI</div>
+          </div>
+          <div class="about-spec">
+            <div class="about-spec-l">Especialidad</div>
+            <div class="about-spec-v">Gobierno Corporativo</div>
+          </div>
+          <div class="about-spec">
+            <div class="about-spec-l">Especialidad</div>
+            <div class="about-spec-v">Auditoría & Control Interno</div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn-cta" style="display:inline-flex;align-items:center;gap:.6rem">
+          Hablar con Marco <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══════════════════════════════════════════ -->
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="centered fade-in">
+      <span class="section-eyebrow">Nuestros Servicios</span>
+      <h2 class="section-title">Soluciones integrales para tu empresa</h2>
+      <div class="section-rule center"></div>
+      <p class="section-desc">Desde auditoría financiera hasta gobierno corporativo. Para PYMES, empresas familiares y proyectos de inversión en Bolivia, Argentina, Perú y Brasil.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured fade-in">
+        <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+        <h3>Auditoría Financiera y Operativa</h3>
+        <p>Revisión independiente de estados financieros, control interno y procesos operativos con dictamen técnico.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-chess"></i></div>
+        <h3>Consultoría Estratégica</h3>
+        <p>Planificación estratégica, Balance Scorecard, KPIs y cuadro de mando gerencial para decidir con datos.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-landmark"></i></div>
+        <h3>Gobierno Corporativo</h3>
+        <p>Estructuración de directorios, manuales de funciones, reglamentos y protocolos para empresas familiares.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Análisis Financiero Integral</h3>
+        <p>Evaluación de proyectos de inversión, modelos de proyección financiera, costos y presupuestos.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-project-diagram"></i></div>
+        <h3>Dirección de Proyectos PMI</h3>
+        <p>Gestión de proyectos públicos y privados bajo la guía del PMI 7ma. Edición. Planificación, ejecución y cierre.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-users-cog"></i></div>
+        <h3>Organización Empresarial</h3>
+        <p>Diseño organizacional, manuales de procedimientos, evaluación de competencias y OKRs.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Gestión de Riesgos</h3>
+        <p>Identificación, análisis y mitigación de riesgos financieros, operativos y estratégicos con informes técnicos.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon"><i class="fas fa-boxes"></i></div>
+        <h3>Gestión de Almacenes e Inventarios</h3>
+        <p>Sistemas de control de inventarios, valorización, procedimientos de almacén y optimización de costos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACADEMY ════════════════════════════════════════════ -->
+<section class="section" id="academia">
+  <div class="container">
+    <div class="academy-wrap fade-in">
+      <div>
+        <div class="academy-tag"><i class="fas fa-rocket"></i> Próximamente · Academia GZM</div>
+        <h2>Aprende finanzas y gestión empresarial desde cero</h2>
+        <p>Cursos online para empresarios, contadores y profesionales que quieren tomar decisiones financieras con confianza. Acceso anticipado disponible — sé el primero en enterarte del lanzamiento.</p>
+        <div class="waitlist-form">
+          <input type="email" id="waitlist-email" placeholder="tu@email.com" autocomplete="email">
+          <button onclick="joinWaitlist()">Unirme a la lista</button>
+        </div>
+        <p style="font-size:.7rem;color:rgba(255,255,255,.2);margin-top:.75rem"><i class="fas fa-lock" style="margin-right:.35rem"></i>Sin spam. Solo cuando lancemos.</p>
+      </div>
+      <div class="course-previews">
+        <div class="course-pill">
+          <div class="course-pill-icon"><i class="fas fa-table"></i></div>
+          <div><h4>Excel Financiero Avanzado</h4><p>Modelos, dashboards y automatización</p></div>
+          <span class="course-badge">Pronto</span>
+        </div>
+        <div class="course-pill">
+          <div class="course-pill-icon"><i class="fas fa-chart-bar"></i></div>
+          <div><h4>Business Intelligence con Power BI</h4><p>Dashboards gerenciales desde cero</p></div>
+          <span class="course-badge">Pronto</span>
+        </div>
+        <div class="course-pill">
+          <div class="course-pill-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+          <div><h4>Finanzas para Empresarios</h4><p>Flujo de caja, costos y rentabilidad</p></div>
+          <span class="course-badge">Pronto</span>
+        </div>
+        <div class="course-pill">
+          <div class="course-pill-icon"><i class="fas fa-tasks"></i></div>
+          <div><h4>Gestión de Proyectos PMI</h4><p>Metodología práctica 7ma. Edición</p></div>
+          <span class="course-badge">Pronto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOOLS STORE ══════════════════════════════════════ -->
+<section class="section bg-alt" id="herramientas">
+  <div class="container">
+    <div class="centered fade-in">
+      <span class="section-eyebrow">Tienda de Herramientas</span>
+      <h2 class="section-title">Descarga y usa hoy mismo</h2>
+      <div class="section-rule center"></div>
+      <p class="section-desc">Plantillas profesionales desarrolladas por expertos. Pago seguro — descarga inmediata.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card fade-in">
+        <div class="tool-card-top">
+          <i class="fas fa-calculator tool-card-icon"></i>
+          <span class="tool-card-badge">Más vendido</span>
+        </div>
+        <div class="tool-card-body">
+          <h3>Sistema Contable en Excel</h3>
+          <p>Sistema completo con registro de transacciones, libro diario, mayor y estados financieros automáticos.</p>
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Plan de cuentas configurable</li>
+            <li><i class="fas fa-check"></i> Balance General y Estado de Resultados</li>
+            <li><i class="fas fa-check"></i> Flujo de Caja automatizado</li>
+            <li><i class="fas fa-check"></i> Soporte incluido 30 días</li>
+          </ul>
+          <div class="tool-price">Bs. 350 <span>pago único</span></div>
+          <button class="btn-buy" onclick="openCompra('Sistema Contable en Excel',350)">Comprar ahora</button>
+        </div>
+      </div>
+      <div class="tool-card fade-in">
+        <div class="tool-card-top">
+          <i class="fas fa-chart-pie tool-card-icon"></i>
+        </div>
+        <div class="tool-card-body">
+          <h3>Plantillas Financieras Profesionales</h3>
+          <p>Pack de modelos de proyección financiera, evaluación de inversiones y análisis de rentabilidad para PYMES.</p>
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Modelo de flujo de caja proyectado</li>
+            <li><i class="fas fa-check"></i> Evaluación VAN / TIR de proyectos</li>
+            <li><i class="fas fa-check"></i> Análisis de costos y punto de equilibrio</li>
+            <li><i class="fas fa-check"></i> Dashboard financiero con KPIs</li>
+          </ul>
+          <div class="tool-price">Bs. 250 <span>pago único</span></div>
+          <button class="btn-buy" onclick="openCompra('Plantillas Financieras Profesionales',250)">Comprar ahora</button>
+        </div>
+      </div>
+      <div class="tool-card fade-in">
+        <div class="tool-card-top">
+          <i class="fas fa-user-check tool-card-icon"></i>
+        </div>
+        <div class="tool-card-body">
+          <h3>Evaluación de Competencias y OKRs</h3>
+          <p>Sistema completo de evaluación mixta: competencias conductuales, técnicas y objetivos OKR por cargo.</p>
+          <ul class="tool-features">
+            <li><i class="fas fa-check"></i> Formulario de evaluación 360°</li>
+            <li><i class="fas fa-check"></i> Matriz de competencias por cargo</li>
+            <li><i class="fas fa-check"></i> Tablero de seguimiento OKR</li>
+            <li><i class="fas fa-check"></i> Informe automático de resultados</li>
+          </ul>
+          <div class="tool-price">Bs. 200 <span>pago único</span></div>
+          <button class="btn-buy" onclick="openCompra('Evaluación de Competencias y OKRs',200)">Comprar ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SAAS SOFTWARE ══════════════════════════════════════ -->
+<section id="software">
+  <div class="container">
+    <div class="centered fade-in">
+      <span class="section-eyebrow" style="color:var(--g600)">Software GZM</span>
+      <h2 class="section-title light">Soluciones tecnológicas para tu sector</h2>
+      <div class="section-rule light center"></div>
+      <p class="section-desc light">Software especializado para las necesidades reales de negocios latinoamericanos. Acceso inmediato, soporte incluido.</p>
+      <div class="saas-billing-toggle">
+        <span class="billing-label active" id="lbl-monthly" onclick="setBilling('monthly')">Mensual</span>
+        <div class="toggle-track" id="billing-toggle" onclick="toggleBilling()">
+          <div class="toggle-knob"></div>
+        </div>
+        <span class="billing-label" id="lbl-annual" onclick="setBilling('annual')">
+          Anual <span class="save-tag">Ahorra 20%</span>
+        </span>
+      </div>
+    </div>
+    <div class="saas-grid">
+      <div class="saas-card fade-in">
+        <div class="saas-card-header">
+          <div class="saas-icon-wrap"><i class="fas fa-hospital"></i></div>
+          <div class="saas-card-name">Software de Clínicas y Hospitales</div>
+          <div class="saas-card-tagline">Gestión integral para centros médicos privados: pacientes, citas, historial clínico y finanzas en un solo sistema.</div>
+        </div>
+        <div class="saas-pricing">
+          <div class="saas-price-wrap">
+            <span class="saas-price-currency">Bs.</span>
+            <span class="saas-price-amount" data-monthly="490" data-annual="392">490</span>
+            <span class="saas-price-period">/ mes</span>
+          </div>
+          <div class="saas-price-annual-note" id="annual-note-1"></div>
+        </div>
+        <div class="saas-features">
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Registro de pacientes e historiales clínicos</li>
+            <li><i class="fas fa-check-circle"></i> Agenda y gestión de citas médicas</li>
+            <li><i class="fas fa-check-circle"></i> Control de inventario de insumos y medicamentos</li>
+            <li><i class="fas fa-check-circle"></i> Facturación y cobranza automatizada</li>
+            <li><i class="fas fa-check-circle"></i> Reportes financieros y de productividad</li>
+            <li><i class="fas fa-check-circle"></i> Acceso multiusuario por roles</li>
+            <li><i class="fas fa-check-circle"></i> Soporte técnico incluido</li>
+          </ul>
+        </div>
+        <div class="saas-card-footer">
+          <button class="btn-saas-primary" onclick="openQR('Software Clínicas y Hospitales',1)">
+            <i class="fas fa-qrcode" style="margin-right:.5rem"></i> Suscribirse ahora
+          </button>
+          <button class="btn-saas-demo" onclick="window.location='#contacto'">
+            <i class="fas fa-desktop" style="margin-right:.4rem"></i> Solicitar demo gratuita
+          </button>
+        </div>
+      </div>
+      <div class="saas-card featured fade-in">
+        <span class="saas-card-badge">Más popular</span>
+        <div class="saas-card-header">
+          <div class="saas-icon-wrap"><i class="fas fa-paw"></i></div>
+          <div class="saas-card-name">Software para Clínicas Veterinarias</div>
+          <div class="saas-card-tagline">Sistema completo para veterinarias: fichas de mascotas, agenda, inventario y rentabilidad por servicio.</div>
+        </div>
+        <div class="saas-pricing">
+          <div class="saas-price-wrap">
+            <span class="saas-price-currency">Bs.</span>
+            <span class="saas-price-amount" data-monthly="350" data-annual="280">350</span>
+            <span class="saas-price-period">/ mes</span>
+          </div>
+          <div class="saas-price-annual-note" id="annual-note-2"></div>
+        </div>
+        <div class="saas-features">
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Fichas completas de pacientes (mascotas)</li>
+            <li><i class="fas fa-check-circle"></i> Historial médico y vacunación</li>
+            <li><i class="fas fa-check-circle"></i> Gestión de citas y recordatorios</li>
+            <li><i class="fas fa-check-circle"></i> Control de stock de productos y medicamentos</li>
+            <li><i class="fas fa-check-circle"></i> Costeo técnico de servicios veterinarios</li>
+            <li><i class="fas fa-check-circle"></i> Facturación y reportes de rentabilidad</li>
+            <li><i class="fas fa-check-circle"></i> Alertas de vencimiento de productos</li>
+          </ul>
+        </div>
+        <div class="saas-card-footer">
+          <button class="btn-saas-primary" onclick="openQR('Software Clínicas Veterinarias',2)">
+            <i class="fas fa-qrcode" style="margin-right:.5rem"></i> Suscribirse ahora
+          </button>
+          <button class="btn-saas-demo" onclick="window.location='#contacto'">
+            <i class="fas fa-desktop" style="margin-right:.4rem"></i> Solicitar demo gratuita
+          </button>
+        </div>
+      </div>
+      <div class="saas-card fade-in">
+        <div class="saas-card-header">
+          <div class="saas-icon-wrap"><i class="fas fa-dumbbell"></i></div>
+          <div class="saas-card-name">Software para Gimnasios y Box CrossFit</div>
+          <div class="saas-card-tagline">Controla socios, membresías, clases y finanzas de tu gimnasio desde un solo panel.</div>
+        </div>
+        <div class="saas-pricing">
+          <div class="saas-price-wrap">
+            <span class="saas-price-currency">Bs.</span>
+            <span class="saas-price-amount" data-monthly="320" data-annual="256">320</span>
+            <span class="saas-price-period">/ mes</span>
+          </div>
+          <div class="saas-price-annual-note" id="annual-note-3"></div>
+        </div>
+        <div class="saas-features">
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Registro y control de socios activos</li>
+            <li><i class="fas fa-check-circle"></i> Gestión de membresías y renovaciones</li>
+            <li><i class="fas fa-check-circle"></i> Programación de clases y horarios WOD</li>
+            <li><i class="fas fa-check-circle"></i> Control de pagos y morosidad</li>
+            <li><i class="fas fa-check-circle"></i> Seguimiento de asistencia y retención</li>
+            <li><i class="fas fa-check-circle"></i> Reportes de ingresos y ocupación</li>
+            <li><i class="fas fa-check-circle"></i> App móvil para socios incluida</li>
+          </ul>
+        </div>
+        <div class="saas-card-footer">
+          <button class="btn-saas-primary" onclick="openQR('Software Gimnasios y CrossFit',3)">
+            <i class="fas fa-qrcode" style="margin-right:.5rem"></i> Suscribirse ahora
+          </button>
+          <button class="btn-saas-demo" onclick="window.location='#contacto'">
+            <i class="fas fa-desktop" style="margin-right:.4rem"></i> Solicitar demo gratuita
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="saas-payment-note">
+      <div class="pay-badge"><i class="fas fa-qrcode"></i> QR Simple / Tigo Money</div>
+      <div class="pay-badge"><i class="fas fa-university"></i> Transferencia bancaria</div>
+      <div class="pay-badge"><i class="fas fa-lock"></i> Pago 100% seguro</div>
+      <div class="pay-badge"><i class="fas fa-bolt"></i> Acceso inmediato</div>
+      <div class="pay-badge"><i class="fas fa-headset"></i> Soporte en español</div>
+    </div>
+  </div>
+</section>
+
+<!-- QR Modal -->
+<div id="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title">
+  <div class="qr-modal-box">
+    <button class="qr-modal-close" onclick="closeQR()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <!-- Paso 1: Datos del suscriptor -->
+    <div id="qr-step-1" class="qr-step active">
+      <h3 id="qr-modal-title" style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);margin-bottom:.35rem;letter-spacing:-.01em">Datos para la suscripción</h3>
+      <p style="font-size:.8rem;color:var(--g600);margin-bottom:1rem;line-height:1.6">Registra tus datos para proceder al pago con QR.</p>
+      <div class="qr-plan-detail">
+        <div id="qr-plan-name" style="font-weight:700;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.9rem"></div>
+        <div class="qr-plan-amount" id="qr-plan-amount"></div>
+      </div>
+      <div style="text-align:left">
+        <div style="margin-bottom:.75rem">
+          <label style="display:block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--g500);margin-bottom:.4rem;font-family:'Montserrat',sans-serif">Nombre completo *</label>
+          <input type="text" id="qr-nombre" placeholder="Tu nombre" autocomplete="name" style="width:100%;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:rgba(255,255,255,.06);color:var(--white);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s">
+        </div>
+        <div style="margin-bottom:.75rem">
+          <label style="display:block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--g500);margin-bottom:.4rem;font-family:'Montserrat',sans-serif">Email *</label>
+          <input type="email" id="qr-email" placeholder="tu@email.com" autocomplete="email" style="width:100%;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:rgba(255,255,255,.06);color:var(--white);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s">
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--g500);margin-bottom:.4rem;font-family:'Montserrat',sans-serif">Teléfono</label>
+          <input type="tel" id="qr-tel" placeholder="+591..." autocomplete="tel" style="width:100%;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:rgba(255,255,255,.06);color:var(--white);font-family:'Inter',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s">
+        </div>
+        <div class="form-feedback" id="qr-step1-feedback" style="margin-bottom:.5rem"></div>
+        <button id="qr-continuar-btn" onclick="submitQRStep1()" style="width:100%;background:var(--white);color:var(--black);border:none;padding:.85rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s">
+          <i class="fas fa-arrow-right" style="margin-right:.5rem"></i> Continuar al pago
+        </button>
+      </div>
+    </div>
+    <!-- Paso 2: Código QR -->
+    <div id="qr-step-2" class="qr-step">
+      <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:var(--white);margin-bottom:.35rem;letter-spacing:-.01em">Pago con QR Boliviano</h3>
+      <p style="font-size:.8rem;color:var(--g600);margin-bottom:1rem;line-height:1.6">Escanea el código QR con Simple, Tigo Money o tu app bancaria.</p>
+      <div class="qr-plan-detail">
+        <div id="qr-plan-name-2" style="font-weight:700;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.9rem"></div>
+        <div class="qr-plan-amount" id="qr-plan-amount-2"></div>
+      </div>
+      <div class="qr-placeholder">
+        <i class="fas fa-qrcode"></i>
+        <span>Coloca aquí tu QR de pago</span>
+      </div>
+      <div class="qr-instructions">
+        <strong>Instrucciones:</strong><br>
+        1. Abre tu app de pagos (Simple, Tigo Money, etc.)<br>
+        2. Escanea el código QR de arriba<br>
+        3. Confirma el monto y realiza el pago<br>
+        4. Envíanos el comprobante por WhatsApp al <strong>+591 763 58689</strong><br>
+        5. Recibirás tus credenciales en menos de 2 horas hábiles
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TESTIMONIALS ══════════════════════════════════════ -->
+<section class="section bg-alt" id="testimonios">
+  <div class="container">
+    <div class="centered fade-in">
+      <span class="section-eyebrow">Casos de Éxito</span>
+      <h2 class="section-title">Clientes que confían en GZM</h2>
+      <div class="section-rule center"></div>
+      <p class="section-desc">Empresas reales, resultados concretos. Cómo hemos transformado negocios en Bolivia y la región.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-in">
+        <span class="testi-sector">Hotelero</span>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">El plan de gobernanza corporativa que diseñó GZM nos permitió estructurar nuestro directorio y prevenir conflictos familiares. Ahora tomamos decisiones con claridad y la empresa tiene continuidad asegurada.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SA</div>
+          <div>
+            <div class="testi-name">Arq. María Selva Antelo</div>
+            <div class="testi-role">Presidente · Eco Resort Colpa Caranda SRL</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in">
+        <span class="testi-sector">Salud Animal</span>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">La consultoría operativa identificó brechas críticas en nuestros procesos que no habíamos detectado. El plan de acción fue claro y ejecutable. Recomiendo a GZM a cualquier empresa que quiera crecer con orden.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DC</div>
+          <div>
+            <div class="testi-name">Dr. Diego Callao</div>
+            <div class="testi-role">Director General · Clínica Veterinaria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in">
+        <span class="testi-sector">Bebidas</span>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">El informe de riesgos fue una herramienta fundamental para presentar ante nuestros inversores. GZM entregó un análisis técnico de alto nivel con recomendaciones prácticas e inmediatamente aplicables.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NY</div>
+          <div>
+            <div class="testi-name">Equipo Directivo</div>
+            <div class="testi-role">NY Beverage S.A.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ════════════════════════════════════════════ -->
+<section class="section" id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <span class="section-eyebrow">Reserva tu Cita</span>
+        <h2 class="section-title">Hablemos sobre tu empresa</h2>
+        <div class="section-rule"></div>
+        <p class="section-desc" style="margin-bottom:2rem">Primera consulta sin costo. Cuéntanos tu desafío y te diremos cómo podemos ayudarte. Atendemos en modalidad presencial (Santa Cruz) y virtual para Bolivia, Argentina, Perú y Brasil.</p>
+        <div class="contact-features">
+          <div class="contact-feat">
+            <i class="fas fa-calendar-alt"></i>
+            <div><h4>Reserva automática online</h4><p>Elige el día y hora que mejor te convenga. Confirmación inmediata por email.</p></div>
+          </div>
+          <div class="contact-feat">
+            <i class="fas fa-video"></i>
+            <div><h4>Virtual o presencial</h4><p>Zoom, Google Meet o en nuestras oficinas en Santa Cruz. Tú decides.</p></div>
+          </div>
+          <div class="contact-feat">
+            <i class="fas fa-globe-americas"></i>
+            <div><h4>Atención regional</h4><p>Bolivia · Argentina · Perú · Brasil. Zona horaria ajustada a tu ubicación.</p></div>
+          </div>
+          <div class="contact-feat">
+            <i class="fas fa-reply"></i>
+            <div><h4>Respuesta en menos de 24 horas</h4><p>Para consultas urgentes, escríbenos por WhatsApp al +591 763 58689.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap fade-in">
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--g900);margin-bottom:1.5rem;letter-spacing:-.02em">Envíanos tu consulta</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Nombre *</label>
+            <input type="text" id="fname" placeholder="Tu nombre" autocomplete="given-name" required>
+          </div>
+          <div class="form-group">
+            <label for="fcompany">Empresa</label>
+            <input type="text" id="fcompany" placeholder="Tu empresa" autocomplete="organization">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="femail">Email *</label>
+            <input type="email" id="femail" placeholder="tu@email.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="fcountry">País</label>
+            <select id="fcountry">
+              <option value="">Selecciona...</option>
+              <option>Bolivia</option>
+              <option>Argentina</option>
+              <option>Perú</option>
+              <option>Brasil</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fservice">Servicio de interés</label>
+          <select id="fservice">
+            <option value="">Selecciona un servicio...</option>
+            <option>Auditoría Financiera</option>
+            <option>Auditoría Operativa</option>
+            <option>Consultoría Estratégica</option>
+            <option>Gobierno Corporativo</option>
+            <option>Gestión de Proyectos</option>
+            <option>Herramientas / Plantillas</option>
+            <option>Software Clínicas y Hospitales</option>
+            <option>Software Clínicas Veterinarias</option>
+            <option>Software Gimnasios / CrossFit</option>
+            <option>Academia (cursos)</option>
+            <option>Otro / Consulta general</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fmsg">¿Cuál es tu principal desafío?</label>
+          <textarea id="fmsg" placeholder="Cuéntanos brevemente sobre tu empresa y lo que necesitas..."></textarea>
+        </div>
+        <button class="form-submit" id="contact-submit-btn" onclick="submitForm()">
+          <i class="fas fa-paper-plane" style="margin-right:.5rem"></i> Enviar consulta
+        </button>
+        <div class="form-feedback" id="contact-feedback"></div>
+        <p class="form-note"><i class="fas fa-lock" style="margin-right:.35rem"></i>Tu información es confidencial y nunca es compartida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOG ═══════════════════════════════════════════════ -->
+<section class="section bg-alt" id="blog">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:.5rem" class="fade-in">
+      <div>
+        <span class="section-eyebrow">Blog & Conocimiento</span>
+        <h2 class="section-title" style="margin-bottom:0">Artículos para hacer crecer tu empresa</h2>
+      </div>
+      <a href="#" style="font-size:.8rem;font-weight:600;color:var(--g700);white-space:nowrap;font-family:'Montserrat',sans-serif;letter-spacing:.02em">Ver todos <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-in">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80" alt="Auditoría financiera" loading="lazy">
+        <div class="blog-card-body">
+          <span class="blog-tag">Auditoría</span>
+          <h3>¿Por qué tu empresa necesita una auditoría financiera antes de fin de año?</h3>
+          <p>Descubre los 5 signos de alerta que indican que es momento de revisar tus estados financieros con un auditor externo.</p>
+          <div class="blog-card-footer">
+            <span>Marco Guzmán · 5 min</span>
+            <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card fade-in">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Gobierno corporativo" loading="lazy">
+        <div class="blog-card-body">
+          <span class="blog-tag">Gobierno Corporativo</span>
+          <h3>Cómo estructurar un directorio familiar sin que destruya la empresa</h3>
+          <p>Las 3 reglas de oro para que el gobierno corporativo sea un puente, no un campo de batalla, en empresas familiares.</p>
+          <div class="blog-card-footer">
+            <span>Marco Guzmán · 7 min</span>
+            <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card fade-in">
+        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=600&q=80" alt="Excel financiero" loading="lazy">
+        <div class="blog-card-body">
+          <span class="blog-tag">Herramientas</span>
+          <h3>Las 7 fórmulas de Excel que todo empresario boliviano debe dominar</h3>
+          <p>Desde el VAN hasta las tablas dinámicas: las funciones que transforman una hoja de cálculo en un tablero de decisiones.</p>
+          <div class="blog-card-footer">
+            <span>Marco Guzmán · 6 min</span>
+            <a href="#">Leer más <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="gzm-logo.jpeg" alt="GZM Asesoría Empresarial" class="footer-logo-img">
+      <p>Expertos en transformar empresas con estrategia, datos y acción. Consultoría, auditoría, academia y herramientas digitales para PYMES y empresas familiares en Bolivia y Latinoamérica.</p>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/marcoantonioguzmanmurillo" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="footer-social-btn" aria-label="Instagram (próximamente)" title="Próximamente"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="footer-social-btn" aria-label="Facebook (próximamente)" title="Próximamente"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/59176358689" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Auditoría Financiera</a></li>
+        <li><a href="#servicios">Consultoría Estratégica</a></li>
+        <li><a href="#servicios">Gobierno Corporativo</a></li>
+        <li><a href="#servicios">Gestión de Proyectos</a></li>
+        <li><a href="#servicios">Análisis Financiero</a></li>
+        <li><a href="#servicios">Gestión de Riesgos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <ul>
+        <li><a href="#academia">Academia GZM</a></li>
+        <li><a href="#herramientas">Sistema Contable Excel</a></li>
+        <li><a href="#herramientas">Plantillas Financieras</a></li>
+        <li><a href="#software">Software Clínicas</a></li>
+        <li><a href="#software">Software Veterinarias</a></li>
+        <li><a href="#software">Software Gimnasios</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-contact-item">
+        <i class="fas fa-phone-alt"></i>
+        <a href="tel:+59176358689">+591 763 58689</a>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:guzmanmurillom@gmail.com">guzmanmurillom@gmail.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fab fa-linkedin-in"></i>
+        <a href="https://linkedin.com/in/marcoantonioguzmanmurillo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Santa Cruz de la Sierra, Bolivia</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GZM Asesoría Empresarial · Ing. Marco A. Guzmán M. · Todos los derechos reservados</span>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MODAL: INSCRIPCIÓN ACADEMIA ══════════════════════ -->
+<div id="inscripcion-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="insc-modal-title">
+  <div class="modal-box dark">
+    <button class="modal-close" onclick="closeInscripcion()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <h3 class="modal-title" id="insc-modal-title">Inscripción Academia GZM</h3>
+    <p class="modal-subtitle">Completa el formulario para reservar tu lugar. Te contactaremos con los detalles del curso.</p>
+    <div class="form-group">
+      <label for="insc-nombre">Nombre completo (para el certificado) *</label>
+      <input type="text" id="insc-nombre" placeholder="Tu nombre completo" autocomplete="name">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="insc-ci">Documento de identidad *</label>
+        <input type="text" id="insc-ci" placeholder="CI o Pasaporte">
+      </div>
+      <div class="form-group">
+        <label for="insc-tel">Teléfono / WhatsApp *</label>
+        <input type="tel" id="insc-tel" placeholder="+591 7..." autocomplete="tel">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="insc-dir">Dirección *</label>
+      <input type="text" id="insc-dir" placeholder="Ciudad, País" autocomplete="street-address">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="insc-email">Email *</label>
+        <input type="email" id="insc-email" placeholder="tu@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="insc-curso">Curso de interés *</label>
+        <select id="insc-curso">
+          <option value="">Selecciona un curso...</option>
+          <option>Excel Financiero Avanzado</option>
+          <option>Business Intelligence con Power BI</option>
+          <option>Finanzas para Empresarios</option>
+          <option>Gestión de Proyectos PMI</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-feedback" id="insc-feedback"></div>
+    <button class="form-submit" id="insc-submit-btn" onclick="submitInscripcion()" style="margin-top:1.25rem;background:var(--white);color:var(--black)">
+      <i class="fas fa-graduation-cap" style="margin-right:.5rem"></i> Confirmar inscripción
+    </button>
+  </div>
+</div>
+
+<!-- ═══ MODAL: COMPRA HERRAMIENTA ════════════════════════ -->
+<div id="compra-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="compra-modal-title">
+  <div class="modal-box light">
+    <button class="modal-close" onclick="closeCompra()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <h3 class="modal-title" id="compra-modal-title">Comprar <span id="comp-product-display"></span></h3>
+    <p class="modal-subtitle" id="comp-subtitle">Pago único — descarga inmediata tras confirmar el pago.</p>
+    <div class="form-group">
+      <label for="comp-nombre">Nombre completo *</label>
+      <input type="text" id="comp-nombre" placeholder="Tu nombre" autocomplete="name">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="comp-email">Email *</label>
+        <input type="email" id="comp-email" placeholder="tu@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="comp-tel">Teléfono *</label>
+        <input type="tel" id="comp-tel" placeholder="+591..." autocomplete="tel">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="comp-cupon">Cupón de descuento (opcional)</label>
+      <div class="cupon-row">
+        <div class="form-group">
+          <input type="text" id="comp-cupon" placeholder="Código de cupón" style="text-transform:uppercase;letter-spacing:.06em">
+        </div>
+        <button class="btn-validar-cupon" id="comp-cupon-btn" onclick="aplicarCupon()">Aplicar</button>
+      </div>
+      <div class="cupon-msg" id="cupon-msg"></div>
+      <div class="cupon-price-row" id="cupon-price-row">
+        <div>
+          <div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--g500);font-weight:700;font-family:'Montserrat',sans-serif;margin-bottom:.3rem">Total a pagar</div>
+          <div style="display:flex;align-items:baseline;gap:.5rem">
+            <span class="cupon-price-original" id="comp-precio-original"></span>
+            <span class="cupon-price-final" id="comp-precio-final"></span>
+          </div>
+        </div>
+        <span class="cupon-discount-badge" id="comp-descuento-label"></span>
+      </div>
+    </div>
+    <div class="form-feedback" id="compra-feedback"></div>
+    <button class="form-submit" id="compra-submit-btn" onclick="submitCompra()">
+      <i class="fas fa-lock" style="margin-right:.5rem"></i> Confirmar compra
+    </button>
+    <p class="form-note" style="margin-top:.75rem"><i class="fas fa-lock" style="margin-right:.35rem"></i>Recibirás instrucciones de pago en tu email de forma inmediata.</p>
+  </div>
+</div>
+
+<!-- ═══ CHAT ════════════════════════════════════════════════ -->
+<button id="chat-btn" onclick="toggleChat()" aria-label="Abrir chat">
+  <i class="fas fa-comment-dots" id="chat-icon"></i>
+</button>
+<div id="chat-bubble">
+  <div class="chat-header">
+    <div class="chat-avatar">G</div>
+    <div class="chat-header-info">
+      <h4>Asistente GZM</h4>
+      <p>Responde al instante</p>
+    </div>
+    <div class="chat-online"></div>
+  </div>
+  <div class="chat-body">
+    <div class="chat-msg">¡Hola! Soy el asistente de GZM. ¿En qué puedo ayudarte hoy?</div>
+    <div class="chat-quick-btns">
+      <button class="chat-q" onclick="chatSelect(this)"><i class="fas fa-search-dollar"></i> Quiero una auditoría financiera</button>
+      <button class="chat-q" onclick="chatSelect(this)"><i class="fas fa-chess"></i> Necesito consultoría estratégica</button>
+      <button class="chat-q" onclick="chatSelect(this)"><i class="fas fa-table"></i> Me interesa una herramienta</button>
+      <button class="chat-q" onclick="chatSelect(this)"><i class="fas fa-graduation-cap"></i> Quiero saber sobre los cursos</button>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+    <button class="chat-send" onclick="sendChat()" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+<div id="lang-banner" aria-live="polite"></div>
+
+<!-- ═══ SCRIPTS ════════════════════════════════════════════ -->
+<script>
+  const CF = {
+    contact:    'https://us-central1-sitio-web-gzm.cloudfunctions.net/onContactForm',
+    academia:   'https://us-central1-sitio-web-gzm.cloudfunctions.net/onInscripcionAcademia',
+    lead:       'https://us-central1-sitio-web-gzm.cloudfunctions.net/onLeadGratuito',
+    cupon:      'https://us-central1-sitio-web-gzm.cloudfunctions.net/validarCupon',
+    suscripcion:'https://us-central1-sitio-web-gzm.cloudfunctions.net/onSuscripcion',
+    venta:      'https://us-central1-sitio-web-gzm.cloudfunctions.net/onVentaHerramienta',
+  };
+  const CHAT_URL = 'https://us-central1-sitio-web-gzm.cloudfunctions.net/onChatMessage';
+  let chatSessionId = null;
+  let chatHistorial = [];
+  const heroBg = document.querySelector('.hero-bg');
+  let _t = false;
+  window.addEventListener('scroll', () => {
+    if(_t) return; _t = true;
+    requestAnimationFrame(() => {
+      const sy = window.scrollY;
+      document.getElementById('header').classList.toggle('scrolled', sy > 20);
+      if(heroBg) heroBg.style.transform = `translateY(${sy * .22}px)`;
+      _t = false;
+    });
+  });
+  const burger = document.getElementById('hamburger');
+  burger.addEventListener('click', function() {
+    const m = document.getElementById('mobile-menu');
+    const o = m.classList.toggle('open');
+    this.setAttribute('aria-expanded', String(o));
+  });
+  function closeMobile() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: .1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  function toggleChat() {
+    const b = document.getElementById('chat-bubble');
+    const icon = document.getElementById('chat-icon');
+    const btn = document.getElementById('chat-btn');
+    const o = b.classList.toggle('open');
+    icon.className = o ? 'fas fa-times' : 'fas fa-comment-dots';
+    btn.setAttribute('aria-label', o ? 'Cerrar chat' : 'Abrir chat');
+  }
+  function chatSelect(btn) {
+    const inp = document.getElementById('chat-input');
+    inp.value = btn.innerText.trim(); inp.focus();
+  }
+  async function sendChat() {
+    const inp = document.getElementById('chat-input');
+    const val = inp.value.trim();
+    if(!val) return;
+    const cb = document.querySelector('.chat-body');
+    const um = document.createElement('div');
+    um.style.cssText = 'background:var(--g900);color:var(--white);border-radius:8px 8px 2px 8px;padding:.65rem 1rem;font-size:.82rem;line-height:1.5;align-self:flex-end;max-width:85%;margin-left:auto';
+    um.textContent = val;
+    cb.appendChild(um);
+    inp.value = '';
+    cb.scrollTop = cb.scrollHeight;
+    const typing = document.createElement('div');
+    typing.className = 'chat-msg';
+    typing.id = 'typing-indicator';
+    typing.innerHTML = '<em style="color:var(--g500)">Escribiendo...</em>';
+    cb.appendChild(typing);
+    cb.scrollTop = cb.scrollHeight;
+    try {
+      const response = await fetch(CHAT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje: val, sessionId: chatSessionId, historial: chatHistorial })
+      });
+      const data = await response.json();
+      document.getElementById('typing-indicator')?.remove();
+      if (data.success) {
+        chatSessionId = data.sessionId;
+        chatHistorial.push({ rol: 'user', contenido: val });
+        chatHistorial.push({ rol: 'assistant', contenido: data.respuesta });
+        const r = document.createElement('div');
+        r.className = 'chat-msg';
+        r.textContent = data.respuesta;
+        cb.appendChild(r);
+      } else { throw new Error(data.error); }
+    } catch (error) {
+      document.getElementById('typing-indicator')?.remove();
+      const r = document.createElement('div');
+      r.className = 'chat-msg';
+      r.innerHTML = 'En este momento no puedo responder. Por favor <a href="https://wa.me/59176358689" target="_blank" style="color:var(--g700);font-weight:700;text-decoration:underline">escríbenos por WhatsApp</a>.';
+      cb.appendChild(r);
+    }
+    cb.scrollTop = cb.scrollHeight;
+  }
+  document.getElementById('chat-input').addEventListener('keydown', e => { if(e.key === 'Enter') sendChat(); });
+  function showErr(id, msg) {
+    const el = document.getElementById(id);
+    el.classList.add('invalid'); el.setAttribute('aria-invalid', 'true');
+    const ex = el.parentNode.querySelector('.field-error'); if(ex) ex.remove();
+    const e = document.createElement('p'); e.className = 'field-error'; e.setAttribute('role', 'alert');
+    e.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${msg}`;
+    el.parentNode.appendChild(e);
+  }
+  function clearErr(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('invalid'); el.removeAttribute('aria-invalid');
+    const e = el.parentNode.querySelector('.field-error'); if(e) e.remove();
+  }
+  function joinWaitlist() {
+    const el = document.getElementById('waitlist-email');
+    const v = el.value.trim();
+    if(v && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+      document.getElementById('insc-email').value = v;
+    }
+    el.style.borderColor = '';
+    openInscripcion();
+  }
+  async function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const company = document.getElementById('fcompany').value.trim();
+    const country = document.getElementById('fcountry').value;
+    const service = document.getElementById('fservice').value;
+    const msg = document.getElementById('fmsg').value.trim();
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let ok = true;
+    if(!name) { showErr('fname','Por favor ingresa tu nombre'); ok=false; } else clearErr('fname');
+    if(!email||!re.test(email)) { showErr('femail','Ingresa un email válido'); ok=false; } else clearErr('femail');
+    if(!ok) { document.querySelector('.form-group input.invalid')?.focus(); return; }
+    const btn = document.getElementById('contact-submit-btn');
+    const fb = document.getElementById('contact-feedback');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:.5rem"></i> Enviando...';
+    btn.disabled = true;
+    fb.className = 'form-feedback'; fb.textContent = '';
+    try {
+      const r = await fetch(CF.contact, { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ nombre:name, empresa:company, email, pais:country, servicio:service, mensaje:msg })
+      });
+      if(!r.ok) throw new Error('server');
+      fb.className = 'form-feedback success';
+      fb.innerHTML = '<i class="fas fa-check-circle" style="margin-right:.5rem"></i>¡Mensaje enviado! Te contactaremos en menos de 24 horas.';
+      ['fname','fcompany','femail','fcountry','fservice','fmsg'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+      btn.innerHTML = '<i class="fas fa-check" style="margin-right:.5rem"></i> Mensaje enviado';
+    } catch(e) {
+      fb.className = 'form-feedback error';
+      fb.innerHTML = '<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Hubo un error, intenta nuevamente.';
+      btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:.5rem"></i> Enviar consulta';
+      btn.disabled = false;
+    }
+  }
+  document.getElementById('femail').addEventListener('blur', function() {
+    if(this.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim())) showErr('femail','Ingresa un email válido');
+    else clearErr('femail');
+  });
+  document.getElementById('fname').addEventListener('blur', function() {
+    if(!this.value.trim()) showErr('fname','Por favor ingresa tu nombre'); else clearErr('fname');
+  });
+  const lb = document.getElementById('lang-banner'); let _lt;
+  function setLang(lang) {
+    document.querySelectorAll('.lang-btn, .lang-toggle-nav button').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
+    });
+    if(lang === 'en') {
+      lb.textContent = 'Versión en inglés próximamente · English version coming soon';
+      lb.style.display = 'block'; clearTimeout(_lt);
+      _lt = setTimeout(() => { lb.style.display = 'none'; }, 4000);
+    }
+  }
+  let billingMode = 'monthly';
+  const prices = { 1:{monthly:490,annual:392}, 2:{monthly:350,annual:280}, 3:{monthly:320,annual:256} };
+  function updatePrices() {
+    const ann = billingMode === 'annual';
+    document.querySelectorAll('.saas-price-amount').forEach((el,i) => {
+      const p = prices[i+1]; if(!p) return;
+      el.textContent = ann ? p.annual : p.monthly;
+    });
+    for(let i=1;i<=3;i++) {
+      const n = document.getElementById('annual-note-'+i); if(!n) continue;
+      n.textContent = ann ? `Facturado anualmente — ahorras Bs. ${(prices[i].monthly-prices[i].annual)*12}/año` : '';
+    }
+    document.getElementById('lbl-monthly').classList.toggle('active', !ann);
+    document.getElementById('lbl-annual').classList.toggle('active', ann);
+    document.getElementById('billing-toggle').classList.toggle('annual', ann);
+  }
+  function toggleBilling() { billingMode = billingMode==='monthly'?'annual':'monthly'; updatePrices(); }
+  function setBilling(m) { billingMode = m; updatePrices(); }
+  // ─── QR MODAL (2 pasos) ───────────────────────────────
+  let curProd='', curAmt=0;
+  function openQR(name, idx) {
+    const p = prices[idx]; if(!p) return;
+    const ann = billingMode==='annual';
+    curProd=name; curAmt=ann?p.annual:p.monthly;
+    document.getElementById('qr-plan-name').textContent = name;
+    document.getElementById('qr-plan-amount').textContent = `Bs. ${curAmt}${ann?'/mes (plan anual)':'/mes'}`;
+    document.getElementById('qr-step-1').classList.add('active');
+    document.getElementById('qr-step-2').classList.remove('active');
+    document.getElementById('qr-step1-feedback').className='form-feedback';
+    document.getElementById('qr-step1-feedback').textContent='';
+    const btn=document.getElementById('qr-continuar-btn');
+    btn.disabled=false;
+    btn.innerHTML='<i class="fas fa-arrow-right" style="margin-right:.5rem"></i> Continuar al pago';
+    document.getElementById('qr-nombre').value='';
+    document.getElementById('qr-email').value='';
+    document.getElementById('qr-tel').value='';
+    const m=document.getElementById('qr-modal');
+    m.classList.add('open'); document.body.style.overflow='hidden';
+    document.getElementById('qr-nombre').focus();
+  }
+  async function submitQRStep1() {
+    const nombre=document.getElementById('qr-nombre').value.trim();
+    const email=document.getElementById('qr-email').value.trim();
+    const telefono=document.getElementById('qr-tel').value.trim();
+    const fb=document.getElementById('qr-step1-feedback');
+    const btn=document.getElementById('qr-continuar-btn');
+    if(!nombre){fb.className='form-feedback error';fb.textContent='Por favor ingresa tu nombre.';return;}
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){fb.className='form-feedback error';fb.textContent='Ingresa un email válido.';return;}
+    btn.disabled=true;
+    btn.innerHTML='<i class="fas fa-spinner fa-spin" style="margin-right:.5rem"></i> Registrando...';
+    fb.className='form-feedback'; fb.textContent='';
+    const ann=billingMode==='annual';
+    try {
+      await fetch(CF.suscripcion,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nombre,email,telefono,producto:curProd,plan:ann?'anual':'mensual',precio_original:curAmt,precio_final:curAmt})
+      });
+    } catch(e) { /* continuar aunque falle el registro */ }
+    document.getElementById('qr-plan-name-2').textContent=curProd;
+    document.getElementById('qr-plan-amount-2').textContent=`Bs. ${curAmt}${ann?'/mes (plan anual)':'/mes'}`;
+    document.getElementById('qr-step-1').classList.remove('active');
+    document.getElementById('qr-step-2').classList.add('active');
+  }
+  function closeQR(){document.getElementById('qr-modal').classList.remove('open');document.body.style.overflow='';}
+
+  // ─── MODAL: INSCRIPCIÓN ACADEMIA ─────────────────────
+  function openInscripcion() {
+    const fb=document.getElementById('insc-feedback');
+    fb.className='form-feedback'; fb.textContent='';
+    const btn=document.getElementById('insc-submit-btn');
+    btn.disabled=false;
+    btn.innerHTML='<i class="fas fa-graduation-cap" style="margin-right:.5rem"></i> Confirmar inscripción';
+    document.getElementById('inscripcion-modal').classList.add('open');
+    document.body.style.overflow='hidden';
+    document.getElementById('insc-nombre').focus();
+  }
+  function closeInscripcion(){document.getElementById('inscripcion-modal').classList.remove('open');document.body.style.overflow='';}
+  async function submitInscripcion() {
+    const nombre_certificado=document.getElementById('insc-nombre').value.trim();
+    const documento_identidad=document.getElementById('insc-ci').value.trim();
+    const telefono=document.getElementById('insc-tel').value.trim();
+    const direccion=document.getElementById('insc-dir').value.trim();
+    const email=document.getElementById('insc-email').value.trim();
+    const curso=document.getElementById('insc-curso').value;
+    const fb=document.getElementById('insc-feedback');
+    const btn=document.getElementById('insc-submit-btn');
+    const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!nombre_certificado||!documento_identidad||!telefono||!direccion||!email||!curso){
+      fb.className='form-feedback error';
+      fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Por favor completa todos los campos obligatorios.';
+      return;
+    }
+    if(!re.test(email)){
+      fb.className='form-feedback error';
+      fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Ingresa un email válido.';
+      return;
+    }
+    btn.disabled=true;
+    btn.innerHTML='<i class="fas fa-spinner fa-spin" style="margin-right:.5rem"></i> Enviando...';
+    fb.className='form-feedback'; fb.textContent='';
+    try {
+      const r=await fetch(CF.academia,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nombre_certificado,documento_identidad,direccion,email,telefono,curso})
+      });
+      if(!r.ok) throw new Error('server');
+      fb.className='form-feedback success';
+      fb.innerHTML='<i class="fas fa-check-circle" style="margin-right:.5rem"></i>¡Inscripción recibida! Te contactaremos pronto con los detalles del curso.';
+      btn.innerHTML='<i class="fas fa-check" style="margin-right:.5rem"></i> ¡Inscripción confirmada!';
+      setTimeout(()=>closeInscripcion(),3500);
+    } catch(e) {
+      fb.className='form-feedback error';
+      fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Hubo un error, intenta nuevamente.';
+      btn.disabled=false;
+      btn.innerHTML='<i class="fas fa-graduation-cap" style="margin-right:.5rem"></i> Confirmar inscripción';
+    }
+  }
+
+  // ─── MODAL: COMPRA HERRAMIENTA ────────────────────────
+  let compraProducto='', compraPrice=0, compraPrecioFinal=0, compraCuponId='';
+  function openCompra(producto, precio) {
+    compraProducto=producto; compraPrice=precio; compraPrecioFinal=precio; compraCuponId='';
+    document.getElementById('comp-product-display').textContent=producto;
+    document.getElementById('comp-subtitle').textContent=`Bs. ${precio} · Pago único — descarga inmediata tras confirmar el pago.`;
+    document.getElementById('comp-cupon').value='';
+    const msgEl=document.getElementById('cupon-msg');
+    msgEl.textContent=''; msgEl.className='cupon-msg';
+    document.getElementById('cupon-price-row').classList.remove('visible');
+    document.getElementById('comp-nombre').value='';
+    document.getElementById('comp-email').value='';
+    document.getElementById('comp-tel').value='';
+    const fb=document.getElementById('compra-feedback');
+    fb.className='form-feedback'; fb.textContent='';
+    const btn=document.getElementById('compra-submit-btn');
+    btn.disabled=false;
+    btn.innerHTML='<i class="fas fa-lock" style="margin-right:.5rem"></i> Confirmar compra';
+    document.getElementById('compra-modal').classList.add('open');
+    document.body.style.overflow='hidden';
+    document.getElementById('comp-nombre').focus();
+  }
+  function closeCompra(){document.getElementById('compra-modal').classList.remove('open');document.body.style.overflow='';}
+  async function aplicarCupon() {
+    const codigo=document.getElementById('comp-cupon').value.trim();
+    const msgEl=document.getElementById('cupon-msg');
+    const rowEl=document.getElementById('cupon-price-row');
+    const btnEl=document.getElementById('comp-cupon-btn');
+    if(!codigo){msgEl.className='cupon-msg err';msgEl.textContent='Ingresa un código de cupón.';return;}
+    msgEl.className='cupon-msg';msgEl.textContent='Verificando...';
+    btnEl.disabled=true;
+    try {
+      const r=await fetch(CF.cupon,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({codigo:codigo.toUpperCase(),aplica_a:compraProducto})
+      });
+      const data=await r.json();
+      if(!r.ok||!data.success){
+        msgEl.className='cupon-msg err';
+        msgEl.textContent=data.error||'Cupón no válido.';
+        compraCuponId=''; compraPrecioFinal=compraPrice;
+        rowEl.classList.remove('visible');
+      } else {
+        compraCuponId=data.id;
+        const descuento=data.tipo==='porcentaje'?Math.round(compraPrice*data.valor/100):data.valor;
+        compraPrecioFinal=Math.max(0,compraPrice-descuento);
+        msgEl.className='cupon-msg ok';
+        msgEl.textContent=data.descripcion||'Cupón aplicado correctamente.';
+        document.getElementById('comp-precio-original').textContent=`Bs. ${compraPrice}`;
+        document.getElementById('comp-precio-final').textContent=`Bs. ${compraPrecioFinal}`;
+        document.getElementById('comp-descuento-label').textContent=data.tipo==='porcentaje'?`-${data.valor}% OFF`:`-Bs. ${descuento}`;
+        rowEl.classList.add('visible');
+      }
+    } catch(e){
+      msgEl.className='cupon-msg err';msgEl.textContent='Error al verificar el cupón.';
+    } finally {
+      btnEl.disabled=false;
+    }
+  }
+  async function submitCompra() {
+    const nombre=document.getElementById('comp-nombre').value.trim();
+    const email=document.getElementById('comp-email').value.trim();
+    const telefono=document.getElementById('comp-tel').value.trim();
+    const fb=document.getElementById('compra-feedback');
+    const btn=document.getElementById('compra-submit-btn');
+    const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!nombre){fb.className='form-feedback error';fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Ingresa tu nombre completo.';return;}
+    if(!email||!re.test(email)){fb.className='form-feedback error';fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Ingresa un email válido.';return;}
+    if(!telefono){fb.className='form-feedback error';fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Ingresa tu teléfono de contacto.';return;}
+    btn.disabled=true;
+    btn.innerHTML='<i class="fas fa-spinner fa-spin" style="margin-right:.5rem"></i> Procesando...';
+    fb.className='form-feedback'; fb.textContent='';
+    try {
+      const payload={nombre,email,telefono,producto:compraProducto,plan:'unico',
+        precio_original:compraPrice,precio_final:compraPrecioFinal};
+      if(compraCuponId) payload.cupon_id=compraCuponId;
+      const r=await fetch(CF.venta,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(!r.ok) throw new Error('server');
+      fb.className='form-feedback success';
+      fb.innerHTML=`<i class="fas fa-check-circle" style="margin-right:.5rem"></i>¡Compra registrada! Recibirás instrucciones de pago en <strong>${email}</strong>.`;
+      btn.innerHTML='<i class="fas fa-check" style="margin-right:.5rem"></i> ¡Compra confirmada!';
+    } catch(e) {
+      fb.className='form-feedback error';
+      fb.innerHTML='<i class="fas fa-exclamation-circle" style="margin-right:.5rem"></i>Hubo un error, intenta nuevamente.';
+      btn.disabled=false;
+      btn.innerHTML='<i class="fas fa-lock" style="margin-right:.5rem"></i> Confirmar compra';
+    }
+  }
+
+  // ─── EVENT LISTENERS MODALES ──────────────────────────
+  document.getElementById('qr-modal').addEventListener('click',function(e){if(e.target===this)closeQR();});
+  document.getElementById('inscripcion-modal').addEventListener('click',function(e){if(e.target===this)closeInscripcion();});
+  document.getElementById('compra-modal').addEventListener('click',function(e){if(e.target===this)closeCompra();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeQR();closeInscripcion();closeCompra();}});
+</script>
+</body>
+</html>
